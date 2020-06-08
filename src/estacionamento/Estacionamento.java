@@ -1,5 +1,6 @@
 package estacionamento;
 
+import java.io.IOException;
 import java.util.Scanner;
 import estacionamento.gerenciamento.Gerenciamento;
 
@@ -8,12 +9,12 @@ public class Estacionamento {
 	public static Scanner scanner = new Scanner(System.in);
 	public static int opcao = 0;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		header();
 		menu();
 	}
 		
-	public static void menu() {	
+	public static void menu() throws IOException {	
 		do {
 			System.out.println("Escolha uma opcao: [1] Entrada | [2] Saida [3] Permanencia [4] Qtd de carros [5] Remover [6] Listar [0] Sair");
 			try {
@@ -34,6 +35,10 @@ public class Estacionamento {
 				Gerenciamento.removeEstadia();
 			} else if (opcao==6) {
 				Gerenciamento.listEstadia();
+			} else if (opcao==7) {
+				Gerenciamento.grava();
+			} else if (opcao==8) {
+				Gerenciamento.le();
 			} else if (opcao==99) {
 				Gerenciamento.debug();
 			}
@@ -43,7 +48,7 @@ public class Estacionamento {
 	}
 	
 	
-	private static void erro() {
+	private static void erro() throws IOException {
 		System.out.println("Opcao invalida");
 		menu();
 	}
